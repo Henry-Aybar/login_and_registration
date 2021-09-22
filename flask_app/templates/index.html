@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="container-md">
+        <h1>Welcome!</h1>
+        <h3>Please remeber to Register or Login before continuing</h3>
+        <hr>
+        <div class="d-flex justify-content-evenly m-5">
+        <!-- Registration Form -->
+            <div class="container bg-dark m-5">
+                {% with messages = get_flashed_messages(True) %}
+                    {% for category, message in messages %}
+                        {% if category == "registration" %}
+                            <p class="text-danger">{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+                <h1 class="text-light">Register HERE!</h1>
+                <form action="/register" method="POST">
+                    <div class="mb-3 text-light">
+                        <label for="name" class="form-label">First Name:</label>
+                        <input name="first_name" type="text" class="form-control" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3 text-light" text-light>
+                        <label for="name" class="form-label">Last Name:</label>
+                        <input name="last_name" type="text" class="form-control" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3 text-light">
+                        <label for="Email" class="form-label">Email address:</label>
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else. (well thats what we tell everyone)</div>
+                    </div>
+
+                    <div class="mb-3 text-light">
+                        <label for="Password" class="form-label">Password:</label>
+                        <input name="password" type="password" class="form-control" >
+                    </div>
+
+                    <div class="mb-3 text-light">
+                        <label for="confirmPassword" class="form-label">Confirm Password:</label>
+                        <input name="confirm-pass" type="password" class="form-control" >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mb-5">Registar</button>
+                </form>
+            </div>
+        <!-- Login Form -->
+            <div class="container bg-dark m-auto">
+                {% for category, message in messages %}
+                    {% if category == "login" %}
+                            <p class="text-danger">{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+                <h1 class="text-light">Login</h1>
+                <form action="/login" method="POST">
+
+                    <div class="mb-3 text-light">
+                        <label for="Email" class="form-label">Email address:</label>
+                        <input name="email" type="email" class="form-control" >
+                    </div>
+
+                    <div class="text-light mb-3">
+                        <label for="Password" class="form-label">Password:</label>
+                        <input name="password" type="password" class="form-control" >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mb-5">Login</button>
+                </form>
+            </div>
+        </div>
+    </div> 
+    {% endwith %} 
+</body>
+</html>
